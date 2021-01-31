@@ -8,7 +8,7 @@ subtitle: ''
 description: ''
 keywords:
 author: John Doe
-language: en
+language: zh_CN
 timezone: ''
 
 # URL
@@ -50,7 +50,7 @@ highlight:
   auto_detect: false
   tab_replace: ''
   wrap: true
-  hljs: false
+  hljs: true
 prismjs:
   enable: false
   preprocess: true
@@ -71,7 +71,7 @@ default_category: uncategorized
 category_map:
 tag_map:
 
-# Metadata elements
+ Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
 meta_generator: true
 
@@ -98,12 +98,29 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: aria
+
+# Hexo feed
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: ' '
+
+# Hexo local search
+search:
+  path: search.xml
+  field: all
+
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
+
   repo: https://github.com/Absolute-Sword/absolute-sword.github.io
   # example, https://github.com/hexojs/hexojs.github.io
   branch: gh-pages

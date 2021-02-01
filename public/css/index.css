@@ -111,7 +111,7 @@
   position: relative;
   margin: 0;
   padding: 0 0.5em;
-  background: #33363b;
+  background: #85bfd1;
   -webkit-box-shadow: 0 -0.5em 1em 0.5em rgba(0,0,0,0.19);
   box-shadow: 0 -0.5em 1em 0.5em rgba(0,0,0,0.19);
   border-top-left-radius: 0.3em;
@@ -138,7 +138,7 @@
   display: block;
   font-size: 1.5em;
   padding: 0.75em;
-  color: #ddd;
+  color: #e6e6e6;
   text-decoration: none;
   text-shadow: 0 0.05em rgba(0,0,0,0.2);
   -webkit-transition: 0.2s ease-in;
@@ -157,7 +157,7 @@
 }
 .nav ul li a.current {
   color: #fff;
-  background: #222;
+  background: #85bfd1;
 }
 .nav .nav-toggle {
   text-align: center;
@@ -215,15 +215,12 @@
   display: -ms-flexbox;
   display: box;
   display: flex;
-  -webkit-box-direction: reverse;
-  -moz-box-direction: reverse;
-  -o-box-direction: reverse;
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
   -o-box-orient: horizontal;
-  -webkit-flex-direction: row-reverse;
-  -ms-flex-direction: row-reverse;
-  flex-direction: row-reverse;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-box-pack: justify;
   -moz-box-pack: justify;
   -o-box-pack: justify;

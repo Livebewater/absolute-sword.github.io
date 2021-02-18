@@ -1,1 +1,1 @@
-init
+# **[absolute-sword.github.io](https://github.com/Absolute-Sword/absolute-sword.github.io)**

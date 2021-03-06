@@ -2,8 +2,9 @@
 title: learn makefile
 date: 2020/2/1/23:30
 tags: c/c++
-categories: c/c++
+categories: cs-learn
 ---
+
 
 ```bash
 g++ -c func1.cpp
@@ -11,6 +12,7 @@ g++ -c func2.cpp
 g++ -c main.cpp 
 g++ -o func main.o fun1.o fun2.o
 ```
+
 
 使用g++ -c 进行编译为对象文件，使用g++ -o来进行链接，链接时的文件顺序无要求
 

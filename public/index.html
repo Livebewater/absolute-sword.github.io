@@ -81,6 +81,27 @@
     </script>
     
     
+    
+    <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/node-main.min.js"></script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ["$","$"], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code"]
+      }
+    });
+    </script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += " has-jax";
+      }
+    });
+    </script>
+    
+    
     <script defer type="text/javascript" src="/js/index.js"></script>
     <script type="text/javascript">
     $(document).ready(function () {
@@ -224,7 +245,7 @@
         
         <span class="post-categories">
           
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/c-c/" itemprop="url" rel="index"><span itemprop="name">c/c++</span></a></span>
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/cs-learn/" itemprop="url" rel="index"><span itemprop="name">cs-learn</span></a></span>
         </span>
         
         
@@ -249,7 +270,7 @@
   
   <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/31/hello-world/">
+      <link itemprop="mainEntityOfPage" href="http://example.com/2020/02/18/Object-Detection/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="RunJi Liu">
         <meta itemprop="description" content="">
@@ -261,33 +282,48 @@
     </div>
     <header class="post-header">
       <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2021/01/31/hello-world/" itemprop="url">Hello World</a>
+        <a class="post-title-link post-title-link-external" href="/2020/02/18/Object-Detection/" itemprop="url">目标检测总结</a>
       </h1>
       <div class="post-meta">
         
         <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2021-01-31T23:39:19+08:00">2021-01-31 23:39:19</time></span>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2020-02-18T22:41:00+08:00">2020-02-18 22:41:00</time></span>
         </span>
         
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ml-learn/" itemprop="url" rel="index"><span itemprop="name">ml-learn</span></a></span>
+        </span>
         
         
       </div>
     </header>
     <main class="post-main" itemprop="articleBody">
       
-      <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+      <h3 id="改进主流网络">改进主流网络</h3>
+<h4 id="two-stage">Two-stage</h4>
+<p>R-CNN：Selective Search <span class="math inline">\(\longrightarrow\)</span> Fast R-CNN： 将所有候选区域都送入CNN转为特征图的步骤改为直接将原图传入CNN后，在得到的特征图上寻找候选框对应的区域<br />
+​ <span class="math inline">\(\longrightarrow\)</span> Faster R-CNN: 增加了RPN，用来替代原先的候选框搜索<br />
+​ <span class="math inline">\(\longrightarrow\)</span> RFCN：Faster R-CNN中的ROI，用来从不同尺寸的特征图得到统一输出尺寸，由于ROI后的网络不具有平移不变性，且ROI后的层数会影响检测效率，改进的RFCN使用位置敏感得分图来代替感兴趣判断子网络（ROI和感兴趣判断子网络有区别吗？），并利用位置敏感的ROI池化层，直接对池化后结果进行判别。<br />
+​ <span class="math inline">\(\longrightarrow\)</span> Mask R-CNN： 在Faster R-CNN中池化的时候都进行了取整操作，会影响语义分割等像素级别任务的精度，Mask R-CNN使用双线性插值填补非整数位置像素。<br />
+​ <span class="math display">\[\longrightarrow\]</span> 后处理的改进： NMS/Soft-NMS/Softer-NMS</p>
       
     </main>
     <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/ml/" rel="tag"><i class="fas fa-tags"></i>ml</a>
+        
+        <a class="post-tag button" href="/tags/dl/" rel="tag"><i class="fas fa-tags"></i>dl</a>
+        
+        <a class="post-tag button" href="/tags/object-detection/" rel="tag"><i class="fas fa-tags"></i>object-detection</a>
+        
+      </div>
       
     </footer>
   </article>
@@ -330,7 +366,7 @@
     
     <div class="tags-count count-block">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">1</a></div>
+      <div><a href="/tags/">4</a></div>
     </div>
     
     

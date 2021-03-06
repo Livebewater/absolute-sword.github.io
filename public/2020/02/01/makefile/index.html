@@ -81,6 +81,27 @@
     </script>
     
     
+    
+    <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/node-main.min.js"></script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ["$","$"], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code"]
+      }
+    });
+    </script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += " has-jax";
+      }
+    });
+    </script>
+    
+    
     <script defer type="text/javascript" src="/js/index.js"></script>
     <script type="text/javascript">
     $(document).ready(function () {
@@ -221,7 +242,7 @@
         
         <span class="post-categories">
           
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/c-c/" itemprop="url" rel="index"><span itemprop="name">c/c++</span></a></span>
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/cs-learn/" itemprop="url" rel="index"><span itemprop="name">cs-learn</span></a></span>
         </span>
         
         
@@ -231,7 +252,6 @@
       <figure class="hljs highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">g++ -c func1.cpp<br>g++ -c func2.cpp<br>g++ -c main.cpp <br>g++ -o func main.o fun1.o fun2.o<br></code></pre></td></tr></table></figure>
 <p>使用g++ -c 进行编译为对象文件，使用g++ -o来进行链接，链接时的文件顺序无要求</p>
 <a id="more"></a>
-
 <figure class="hljs highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">g++ -o hello main.cpp function1.cpp function2.cpp<br></code></pre></td></tr></table></figure>
 <p>也可以一步到位</p>
 <p>为了解决：</p>
@@ -249,12 +269,8 @@
 <figure class="hljs highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-comment"># the 3-ed</span><br><br>cc = g++<br>CFLAGS = -c -Wall <span class="hljs-comment"># -Wall是显示所有的warning</span><br>OFLAGS = -Wall<br><span class="hljs-section">all: func</span><br><span class="hljs-section">func: main.o func1.o func2.o</span><br>      <span class="hljs-variable">$(cc)</span> <span class="hljs-variable">$(OFLAGS)</span> main.o func1.o func2.o -o func<br><span class="hljs-section">main.o: main.cpp</span><br>      <span class="hljs-variable">$(cc)</span> <span class="hljs-variable">$(CFLAGS)</span> main.cpp<br><span class="hljs-section">func1.o: func1.cpp</span><br>      <span class="hljs-variable">$(cc)</span> <span class="hljs-variable">$(CFLAGS)</span> func1.cpp<br><span class="hljs-section">func2.o: func2.cpp</span><br>      <span class="hljs-variable">$(cc)</span> <span class="hljs-variable">$(CFLAGS)</span> func2.cpp<br><span class="hljs-section">clean:</span><br>      rm -rf *.o func<br></code></pre></td></tr></table></figure>
 <p>添加了一些变量，进行简化</p>
 <figure class="hljs highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-comment"># the 4-ed</span><br>cc = g++<br>CFLAGS = -c -Wall <span class="hljs-comment"># -Wall是显示所有的warning</span><br>OFLAGS = -Wall<br><span class="hljs-section">all: func</span><br><span class="hljs-section">func: main.o func1.o func2.o</span><br>      <span class="hljs-variable">$(cc)</span> <span class="hljs-variable">$(OFLAGS)</span> <span class="hljs-variable">$^</span> -o <span class="hljs-variable">$@</span><br><span class="hljs-section">main.o: main.cpp</span><br>      <span class="hljs-variable">$(cc)</span> <span class="hljs-variable">$(CFLAGS)</span> <span class="hljs-variable">$&lt;</span><br><span class="hljs-section">func1.o: func1.cpp</span><br>      <span class="hljs-variable">$(cc)</span> <span class="hljs-variable">$(CFLAGS)</span> <span class="hljs-variable">$&lt;</span><br><span class="hljs-section">func2.o: func2.cpp</span><br>      <span class="hljs-variable">$(cc)</span> <span class="hljs-variable">$(CFLAGS)</span> <span class="hljs-variable">$&lt;</span><br><span class="hljs-section">clean:</span><br>      rm -rf *.o func<br></code></pre></td></tr></table></figure>
-
-
 <p>引入$  ^代表所有的依赖， $&lt;代表第一个依赖（对于单参数如func1.o的，$&lt;和$^都可以）， $@代表target</p>
 <figure class="hljs highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-comment"># the 5-ed</span><br>cc = g++<br>CFLAGS = -c -Wall<br>OFLAGS = -Wall<br>SOURCE_DIR = .<br>SOURCE_FILE = <span class="hljs-variable">$(<span class="hljs-built_in">wildcard</span> <span class="hljs-variable">$(SOURCE_DIR)</span>/*.cpp)</span> <span class="hljs-comment"># 用于获取路径下指定模式的文件</span><br>OBJS = <span class="hljs-variable">$(<span class="hljs-built_in">patsubst</span> %.cpp, %.o, <span class="hljs-variable">$(SOURCE_FILE)</span>)</span> <span class="hljs-comment"># 用于从一个模式的文件更换为另一个模式文件</span><br><span class="hljs-section">all: func</span><br><span class="hljs-section">func: main.o func1.o func2.o</span><br>      <span class="hljs-variable">$(cc)</span> <span class="hljs-variable">$(OFLAGS)</span> <span class="hljs-variable">$^</span> -o <span class="hljs-variable">$@</span><br><span class="hljs-section">main.o: main.cpp</span><br>      <span class="hljs-variable">$(cc)</span> <span class="hljs-variable">$(CFLAGS)</span> <span class="hljs-variable">$&lt;</span><br><span class="hljs-section">func1.o: func1.cpp</span><br>      <span class="hljs-variable">$(cc)</span> <span class="hljs-variable">$(CFLAGS)</span> <span class="hljs-variable">$&lt;</span><br><span class="hljs-section">func2.o: func2.cpp</span><br>      <span class="hljs-variable">$(cc)</span> <span class="hljs-variable">$(CFLAGS)</span> <span class="hljs-variable">$&lt;</span><br><span class="hljs-section">clean:</span><br>      @rm -rf *.o func <br></code></pre></td></tr></table></figure>
-
-
 <p>wildcard 用于获取路径下指定模式的文件</p>
 <p>patsubst (pattern subsitution)用于从一个模式的文件更换为另一个模式文件</p>
 <p>rm处加入@可以避免回显，否则执行clean时也会输出rm命令</p>
@@ -288,7 +304,7 @@
     </div>
     <div class="page-nav-prev page-nav-item">
       
-      <a href="/2021/01/31/hello-world/" rel="prev" title="Hello World"><span class="nav-title">Hello World</span><i class="fas fa-angle-right"></i></a>
+      <a href="/2020/02/18/Object-Detection/" rel="prev" title="目标检测总结"><span class="nav-title">目标检测总结</span><i class="fas fa-angle-right"></i></a>
       
     </div>
   </nav>
@@ -330,7 +346,7 @@
     
     <div class="tags-count count-block">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">1</a></div>
+      <div><a href="/tags/">4</a></div>
     </div>
     
     

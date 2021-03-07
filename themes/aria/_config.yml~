@@ -90,8 +90,8 @@ auto_excerpt:
 mathjax:
   enable: true
   global: true
-  cdn: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-MML-AM_CHTML 
-  # cdn: https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/node-main.min.js
+  #  cdn: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-MML-AM_CHTML 
+  cdn: https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/node-main.min.js
 
 # Note: `fontawesome` is fontawesome-all. `scrollspy` and `util` are from bootstrap. `busuanzi` is `busuanzi.pure.mini.js`.
 # If you don't know what you are doing, don't change it.

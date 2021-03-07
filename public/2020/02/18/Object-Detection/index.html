@@ -82,7 +82,7 @@
     
     
     
-    <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/node-main.min.js"></script>
+    <script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-MML-AM_CHTML"></script>
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
@@ -251,25 +251,26 @@
     <main class="post-main" itemprop="articleBody">
       <h3 id="改进主流网络">改进主流网络</h3>
 <h4 id="two-stage">Two-stage</h4>
-<p>R-CNN：Selective Search <span class="math inline">\(\longrightarrow\)</span> Fast R-CNN： 将所有候选区域都送入CNN转为特征图的步骤改为直接将原图传入CNN后，在得到的特征图上寻找候选框对应的区域<br />
-​ <span class="math inline">\(\longrightarrow\)</span> Faster R-CNN: 增加了RPN，用来替代原先的候选框搜索<br />
-​ <span class="math inline">\(\longrightarrow\)</span> RFCN：Faster R-CNN中的ROI，用来从不同尺寸的特征图得到统一输出尺寸，由于ROI后的网络不具有平移不变性，且ROI后的层数会影响检测效率，改进的RFCN使用位置敏感得分图来代替感兴趣判断子网络（ROI和感兴趣判断子网络有区别吗？），并利用位置敏感的ROI池化层，直接对池化后结果进行判别。<br />
-​ <span class="math inline">\(\longrightarrow\)</span> Mask R-CNN： 在Faster R-CNN中池化的时候都进行了取整操作，会影响语义分割等像素级别任务的精度，Mask R-CNN使用双线性插值填补非整数位置像素。<br />
-​ <span class="math display">\[\longrightarrow\]</span> 后处理的改进： NMS/Soft-NMS/Softer-NMS</p>
+<p>R-CNN：Selective Search</p>
+<p><span class="math inline">\(\longrightarrow\)</span> Fast R-CNN： 将所有候选区域都送入CNN转为特征图的步骤改为直接将原图传入CNN后，在得到的特征图上寻找候选框对应的区域</p>
+<p><span class="math inline">\(~\longrightarrow\)</span> Faster R-CNN: 增加了RPN，用来替代原先的候选框搜索</p>
+<p><span class="math inline">\(~~\longrightarrow\)</span> RFCN：Faster R-CNN中的ROI，用来从不同尺寸的特征图得到统一输出尺寸，由于ROI后的网络不具有平移不变性，且ROI后的层数会影响检测效率，改进的RFCN使用位置敏感得分图来代替感兴趣判断子网络（ROI和感兴趣判断子网络有区别吗？），并利用位置敏感的ROI池化层，直接对池化后结果进行判别。</p>
+<p><span class="math inline">\(~~\longrightarrow\)</span> Mask R-CNN： 在Faster R-CNN中池化的时候都进行了取整操作，会影响语义分割等像素级别任务的精度，Mask R-CNN使用双线性插值填补非整数位置像素。</p>
+<p><span class="math inline">\(~~\longrightarrow\)</span> 后处理的改进： NMS/Soft-NMS/Softer-NMS</p>
 <a id="more"></a>
 <h4 id="one-stage">One-stage</h4>
 <p>YOLO-v1</p>
-<p><span class="math inline">\(\longrightarrow\)</span> SSD：在后几层卷积上对不同尺度上的特征图运用anchor方法进行候选框提取</p>
-<p><span class="math inline">\(\longrightarrow\)</span> YOLO-v2：增加了批归一化，高分辨率分类器，直接目标框位置检测，多尺度训练</p>
-<p>​ <span class="math inline">\(\longrightarrow\)</span> YOLO-v3：改进了backbone（v3中的池化基本由卷积实现，引入残差块），结合特征金字塔网络FPN</p>
+<p><span class="math inline">\(~\longrightarrow\)</span> SSD：在后几层卷积上对不同尺度上的特征图运用anchor方法进行候选框提取</p>
+<p><span class="math inline">\(~~\longrightarrow\)</span> YOLO-v2：增加了批归一化，高分辨率分类器，直接目标框位置检测，多尺度训练</p>
+<p><span class="math inline">\(~\longrightarrow\)</span> YOLO-v3：改进了backbone（v3中的池化基本由卷积实现，引入残差块），结合特征金字塔网络FPN</p>
 <h4 id="one-stage-two-stage">One-stage + Two-stage</h4>
-<p><span class="math inline">\(\longrightarrow\)</span> RON：将SSD与Faster R-CNN相结合，改进backbone使用了与RPN相似的策略来引导目标对象搜索</p>
-<p><span class="math inline">\(\longrightarrow\)</span> RefineDet：融合了RPN，FPN，SSD，（比较复杂，看不懂）</p>
+<p><span class="math inline">\(~\longrightarrow\)</span> RON：将SSD与Faster R-CNN相结合，改进backbone使用了与RPN相似的策略来引导目标对象搜索</p>
+<p><span class="math inline">\(~\longrightarrow\)</span> RefineDet：融合了RPN，FPN，SSD，（比较复杂，看不懂）</p>
 <h3 id="小目标检测">小目标检测</h3>
 <h4 id="backbone改进">backbone改进</h4>
-<p><span class="math inline">\(\longrightarrow\)</span> DetNet：基于RestNet-50改进</p>
-<p><span class="math inline">\(\longrightarrow\)</span> DenseNet：使用了密集块进行层与层的连接</p>
-<p>​ <span class="math inline">\(\longrightarrow\)</span> STDN：将DenseNet作为特征提取网络，引入尺寸转换层</p>
+<p><span class="math inline">\(~\longrightarrow\)</span> DetNet：基于RestNet-50改进</p>
+<p><span class="math inline">\(~\longrightarrow\)</span> DenseNet：使用了密集块进行层与层的连接</p>
+<p><span class="math inline">\(~~\longrightarrow\)</span> STDN：将DenseNet作为特征提取网络，引入尺寸转换层</p>
 <h4 id="增加感受野">增加感受野</h4>
 <p><span class="math inline">\(\longrightarrow\)</span> RFB：在Inception的基础上加入膨胀卷积/空洞卷积，增大感受野</p>
 <p><span class="math inline">\(\longrightarrow\)</span> TridenNet：以ResNet-101作为backbone，加入空洞卷积，通过多分支结构，权重共享和指定尺度过滤训练</p>
@@ -298,10 +299,10 @@
 <p><span class="math inline">\(\longrightarrow\)</span>HSJT：HSJT 首先利用目标类别之间的关系,建立新的层次网络模型,进一步提高识别性能;其次将边界框级标记图像和图像级标记图像结合起来进行联合训练 ,提出一种联合训练生成大规模半监督目标检测的方法 。</p>
 <h3 id="轻量化模型">轻量化模型</h3>
 <p><span class="math inline">\(\longrightarrow\)</span>MobileNet-v1：将传统卷积分为深度可分离卷积（即一个卷积核只负责对一个特征图进行卷积）+逐点卷积（1×1卷积）</p>
-<p>​ <span class="math inline">\(\longrightarrow\)</span>MobileNet-v2：增加了Linear bottlenecks，去除小维度输出层后的非线性激活层，增加了inverted residual block，对维度先扩增再缩减。</p>
-<p>​ <span class="math inline">\(\longrightarrow\)</span>MobileNet-v3：加入互补搜索技术组合（通过NAS进行架构设计），进行网络结构改进</p>
+<p><span class="math inline">\(~\longrightarrow\)</span>MobileNet-v2：增加了Linear bottlenecks，去除小维度输出层后的非线性激活层，增加了inverted residual block，对维度先扩增再缩减。</p>
+<p><span class="math inline">\(~~\longrightarrow\)</span>MobileNet-v3：加入互补搜索技术组合（通过NAS进行架构设计），进行网络结构改进</p>
 <p><span class="math inline">\(\longrightarrow\)</span>ShuffleNetv1：</p>
-<p>​ <span class="math inline">\(\longrightarrow\)</span>ShuffleNetc2:</p>
+<p><span class="math inline">\(~\longrightarrow\)</span>ShuffleNetc2:</p>
 <p>ILSVRC = ImageNet Large Scale Visual Recognition Challenge</p>
 
     </main>
@@ -328,6 +329,8 @@
       
     </div>
     <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2021/03/06/Surface-go/" rel="prev" title="Surface-go"><span class="nav-title">Surface-go</span><i class="fas fa-angle-right"></i></a>
       
     </div>
   </nav>
@@ -362,14 +365,14 @@
     
     <div class="archives-count count-block">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">2</a></div>
+      <div><a href="/archives/">3</a></div>
     </div>
     
     
     
     <div class="tags-count count-block">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">4</a></div>
+      <div><a href="/tags/">5</a></div>
     </div>
     
     

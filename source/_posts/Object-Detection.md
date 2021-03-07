@@ -7,7 +7,6 @@ tags:
 - object-detection
 categories: 
 - ml-learn
-mathjax: true
 ---
 
 
@@ -17,11 +16,16 @@ mathjax: true
 #### Two-stage
 
 R-CNN：Selective Search
+
  $\longrightarrow$ Fast R-CNN： 将所有候选区域都送入CNN转为特征图的步骤改为直接将原图传入CNN后，在得到的特征图上寻找候选框对应的区域    
-​    $\longrightarrow$  Faster R-CNN:  增加了RPN，用来替代原先的候选框搜索   
-​        $\longrightarrow$  RFCN：Faster R-CNN中的ROI，用来从不同尺寸的特征图得到统一输出尺寸，由于ROI后的网络不具有平移不变性，且ROI后的层数会影响检测效率，改进的RFCN使用位置敏感得分图来代替感兴趣判断子网络（ROI和感兴趣判断子网络有区别吗？），并利用位置敏感的ROI池化层，直接对池化后结果进行判别。    
-​		$\longrightarrow$  Mask R-CNN： 在Faster R-CNN中池化的时候都进行了取整操作，会影响语义分割等像素级别任务的精度，Mask R-CNN使用双线性插值填补非整数位置像素。    
-​		$$\longrightarrow$$ 后处理的改进： NMS/Soft-NMS/Softer-NMS
+
+$~\longrightarrow$  Faster R-CNN:  增加了RPN，用来替代原先的候选框搜索   
+
+ $~~\longrightarrow$  RFCN：Faster R-CNN中的ROI，用来从不同尺寸的特征图得到统一输出尺寸，由于ROI后的网络不具有平移不变性，且ROI后的层数会影响检测效率，改进的RFCN使用位置敏感得分图来代替感兴趣判断子网络（ROI和感兴趣判断子网络有区别吗？），并利用位置敏感的ROI池化层，直接对池化后结果进行判别。  
+
+ $~~\longrightarrow$  Mask R-CNN： 在Faster R-CNN中池化的时候都进行了取整操作，会影响语义分割等像素级别任务的精度，Mask R-CNN使用双线性插值填补非整数位置像素。   
+
+$~~\longrightarrow$ 后处理的改进： NMS/Soft-NMS/Softer-NMS
 
 <!--more-->
 
@@ -29,27 +33,27 @@ R-CNN：Selective Search
 
 YOLO-v1
 
-   $\longrightarrow$ SSD：在后几层卷积上对不同尺度上的特征图运用anchor方法进行候选框提取
+$~\longrightarrow$ SSD：在后几层卷积上对不同尺度上的特征图运用anchor方法进行候选框提取
 
-   $\longrightarrow$ YOLO-v2：增加了批归一化，高分辨率分类器，直接目标框位置检测，多尺度训练
+$~~\longrightarrow$ YOLO-v2：增加了批归一化，高分辨率分类器，直接目标框位置检测，多尺度训练
 
-   ​	$\longrightarrow$ YOLO-v3：改进了backbone（v3中的池化基本由卷积实现，引入残差块），结合特征金字塔网络FPN
+$~\longrightarrow$ YOLO-v3：改进了backbone（v3中的池化基本由卷积实现，引入残差块），结合特征金字塔网络FPN
 
 #### One-stage + Two-stage
 
-   $\longrightarrow$ RON：将SSD与Faster R-CNN相结合，改进backbone使用了与RPN相似的策略来引导目标对象搜索
+$~\longrightarrow$ RON：将SSD与Faster R-CNN相结合，改进backbone使用了与RPN相似的策略来引导目标对象搜索
 
-   $\longrightarrow$ RefineDet：融合了RPN，FPN，SSD，（比较复杂，看不懂）
+$~\longrightarrow$ RefineDet：融合了RPN，FPN，SSD，（比较复杂，看不懂）
 
 ### 小目标检测
 
 #### backbone改进
 
-$\longrightarrow$ DetNet：基于RestNet-50改进
+$~\longrightarrow$ DetNet：基于RestNet-50改进
 
-$\longrightarrow$ DenseNet：使用了密集块进行层与层的连接
+$~\longrightarrow$ DenseNet：使用了密集块进行层与层的连接
 
-​	$\longrightarrow$ STDN：将DenseNet作为特征提取网络，引入尺寸转换层
+$~~\longrightarrow$ STDN：将DenseNet作为特征提取网络，引入尺寸转换层
 
 #### 增加感受野
 
@@ -108,13 +112,13 @@ $\longrightarrow$HSJT：HSJT 首先利用目标类别之间的关系,建立新�
 
 $\longrightarrow$MobileNet-v1：将传统卷积分为深度可分离卷积（即一个卷积核只负责对一个特征图进行卷积）+逐点卷积（1×1卷积）
 
-​	$\longrightarrow$MobileNet-v2：增加了Linear bottlenecks，去除小维度输出层后的非线性激活层，增加了inverted residual block，对维度先扩增再缩减。
+$~\longrightarrow$MobileNet-v2：增加了Linear bottlenecks，去除小维度输出层后的非线性激活层，增加了inverted residual block，对维度先扩增再缩减。
 
-​		$\longrightarrow$MobileNet-v3：加入互补搜索技术组合（通过NAS进行架构设计），进行网络结构改进
+$~~\longrightarrow$MobileNet-v3：加入互补搜索技术组合（通过NAS进行架构设计），进行网络结构改进
 
 $\longrightarrow$ShuffleNetv1：
 
-​	$\longrightarrow$ShuffleNetc2:
+$~\longrightarrow$ShuffleNetc2:
 
 
 

@@ -81,6 +81,27 @@
     </script>
     
     
+    
+    <script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ["$","$"], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code"]
+      }
+    });
+    </script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += " has-jax";
+      }
+    });
+    </script>
+    
+    
     <script defer type="text/javascript" src="/js/index.js"></script>
     <script type="text/javascript">
     $(document).ready(function () {
@@ -198,6 +219,110 @@
   
   <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/06/Surface-go/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="RunJi Liu">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Be water, My friend">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2021/03/06/Surface-go/" itemprop="url">Surface-go</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2021-03-06T21:07:45+08:00">2021-03-06 21:07:45</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>This is a test on my new surface go for testing my page transfer.</p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/life/" rel="tag"><i class="fas fa-tags"></i>life</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://example.com/2020/02/18/Object-Detection/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="RunJi Liu">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Be water, My friend">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2020/02/18/Object-Detection/" itemprop="url">目标检测总结</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2020-02-18T22:41:00+08:00">2020-02-18 22:41:00</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ml-learn/" itemprop="url" rel="index"><span itemprop="name">ml-learn</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <h3 id="改进主流网络">改进主流网络</h3>
+<h4 id="two-stage">Two-stage</h4>
+<p>R-CNN：Selective Search</p>
+<p><span class="math inline">\(\longrightarrow\)</span> Fast R-CNN： 将所有候选区域都送入CNN转为特征图的步骤改为直接将原图传入CNN后，在得到的特征图上寻找候选框对应的区域</p>
+<p><span class="math inline">\(~\longrightarrow\)</span> Faster R-CNN: 增加了RPN，用来替代原先的候选框搜索</p>
+<p><span class="math inline">\(~~\longrightarrow\)</span> RFCN：Faster R-CNN中的ROI，用来从不同尺寸的特征图得到统一输出尺寸，由于ROI后的网络不具有平移不变性，且ROI后的层数会影响检测效率，改进的RFCN使用位置敏感得分图来代替感兴趣判断子网络（ROI和感兴趣判断子网络有区别吗？），并利用位置敏感的ROI池化层，直接对池化后结果进行判别。</p>
+<p><span class="math inline">\(~~\longrightarrow\)</span> Mask R-CNN： 在Faster R-CNN中池化的时候都进行了取整操作，会影响语义分割等像素级别任务的精度，Mask R-CNN使用双线性插值填补非整数位置像素。</p>
+<p><span class="math inline">\(~~\longrightarrow\)</span> 后处理的改进： NMS/Soft-NMS/Softer-NMS</p>
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/ml/" rel="tag"><i class="fas fa-tags"></i>ml</a>
+        
+        <a class="post-tag button" href="/tags/dl/" rel="tag"><i class="fas fa-tags"></i>dl</a>
+        
+        <a class="post-tag button" href="/tags/object-detection/" rel="tag"><i class="fas fa-tags"></i>object-detection</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://example.com/2020/02/01/makefile/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="RunJi Liu">
@@ -241,103 +366,6 @@
       <div class="post-tags">
         
         <a class="post-tag button" href="/tags/c-c/" rel="tag"><i class="fas fa-tags"></i>c/c++</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://example.com/2020/02/18/Object-Detection/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="RunJi Liu">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/images/avatar.png">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Be water, My friend">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2020/02/18/Object-Detection/" itemprop="url">目标检测总结</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2020-02-18T22:41:00+08:00">2020-02-18 22:41:00</time></span>
-        </span>
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-categories">
-          
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ml-learn/" itemprop="url" rel="index"><span itemprop="name">ml-learn</span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <h3 id="改进主流网络"><a href="#改进主流网络" class="headerlink" title="改进主流网络"></a>改进主流网络</h3><h4 id="Two-stage"><a href="#Two-stage" class="headerlink" title="Two-stage"></a>Two-stage</h4><p>R-CNN：Selective Search<br> $\longrightarrow$ Fast R-CNN： 将所有候选区域都送入CNN转为特征图的步骤改为直接将原图传入CNN后，在得到的特征图上寻找候选框对应的区域<br>​    $\longrightarrow$  Faster R-CNN:  增加了RPN，用来替代原先的候选框搜索<br>​        $\longrightarrow$  RFCN：Faster R-CNN中的ROI，用来从不同尺寸的特征图得到统一输出尺寸，由于ROI后的网络不具有平移不变性，且ROI后的层数会影响检测效率，改进的RFCN使用位置敏感得分图来代替感兴趣判断子网络（ROI和感兴趣判断子网络有区别吗？），并利用位置敏感的ROI池化层，直接对池化后结果进行判别。<br>​        $\longrightarrow$  Mask R-CNN： 在Faster R-CNN中池化的时候都进行了取整操作，会影响语义分割等像素级别任务的精度，Mask R-CNN使用双线性插值填补非整数位置像素。<br>​        <script type="math/tex">\longrightarrow</script> 后处理的改进： NMS/Soft-NMS/Softer-NMS</p>
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/ml/" rel="tag"><i class="fas fa-tags"></i>ml</a>
-        
-        <a class="post-tag button" href="/tags/dl/" rel="tag"><i class="fas fa-tags"></i>dl</a>
-        
-        <a class="post-tag button" href="/tags/object-detection/" rel="tag"><i class="fas fa-tags"></i>object-detection</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/06/Surface-go/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="RunJi Liu">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/images/avatar.png">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Be water, My friend">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2021/03/06/Surface-go/" itemprop="url">Surface-go</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2021-03-06T21:07:45+08:00">2021-03-06 21:07:45</time></span>
-        </span>
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>This is on my new surface go for testing my page transfer</p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/%EF%BF%BD%EF%BF%BD/" rel="tag"><i class="fas fa-tags"></i>��</a>
         
       </div>
       

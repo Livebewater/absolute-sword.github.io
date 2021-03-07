@@ -81,6 +81,27 @@
     </script>
     
     
+    
+    <script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ["$","$"], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code"]
+      }
+    });
+    </script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += " has-jax";
+      }
+    });
+    </script>
+    
+    
     <script defer type="text/javascript" src="/js/index.js"></script>
     <script type="text/javascript">
     $(document).ready(function () {
@@ -206,12 +227,12 @@
 <figure class="hljs highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">g++ -o hello main.cpp function1.cpp function2.cpp<br></code></pre></td></tr></table></figure>
 <p>也可以一步到位</p>
 <p>为了解决：</p>
-<ol>
+<ol type="1">
 <li>减少命令数，直接写成一个文件来进行执行</li>
 <li>避免每次修改文件之后都需要重新将所有文件进行编译，让make通过时间戳看文件是否改动过，改动过才需要重新编译</li>
 </ol>
 <p>另外，在clion中，会将所有文件名为makefile及其变体（任意字母转为大小写）都视为makefile文件，但是在执行make的时候还是只会识别makefile和Makefile文件</p>
-<p> <target>:<dependencies></p>
+<p><target>:<dependencies></p>
 <figure class="hljs highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-comment"># the 1-ed</span><br><span class="hljs-section">all:</span><br>   g++ -o func main.cpp func1.cpp func2.cpp<br><span class="hljs-section">clean:</span><br>   rm -rf *.o func<br></code></pre></td></tr></table></figure>
 <p>all和clean是一个target，使用make clean和make all就可以激活对应target，分别执行对应的依赖（指令）</p>
 <figure class="hljs highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-comment"># the 2-ed</span><br><span class="hljs-section">all: func</span><br><span class="hljs-section">func: main.o func1.o func2.o</span><br>      g++ main.o func1.o func2.o -o func<br><span class="hljs-section">main.o: main.cpp</span><br>      g++ -c main.cpp<br><span class="hljs-section">func1.o: func1.cpp</span><br>      g++ -c func1.cpp<br><span class="hljs-section">func2.o: func2.cpp</span><br>      g++ -c func2.cpp<br><span class="hljs-section">clean:</span><br>      rm -rf *.o func<br></code></pre></td></tr></table></figure>
@@ -220,7 +241,7 @@
 <figure class="hljs highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-comment"># the 3-ed</span><br><br>cc = g++<br>CFLAGS = -c -Wall <span class="hljs-comment"># -Wall是显示所有的warning</span><br>OFLAGS = -Wall<br><span class="hljs-section">all: func</span><br><span class="hljs-section">func: main.o func1.o func2.o</span><br>      <span class="hljs-variable">$(cc)</span> <span class="hljs-variable">$(OFLAGS)</span> main.o func1.o func2.o -o func<br><span class="hljs-section">main.o: main.cpp</span><br>      <span class="hljs-variable">$(cc)</span> <span class="hljs-variable">$(CFLAGS)</span> main.cpp<br><span class="hljs-section">func1.o: func1.cpp</span><br>      <span class="hljs-variable">$(cc)</span> <span class="hljs-variable">$(CFLAGS)</span> func1.cpp<br><span class="hljs-section">func2.o: func2.cpp</span><br>      <span class="hljs-variable">$(cc)</span> <span class="hljs-variable">$(CFLAGS)</span> func2.cpp<br><span class="hljs-section">clean:</span><br>      rm -rf *.o func<br></code></pre></td></tr></table></figure>
 <p>添加了一些变量，进行简化</p>
 <figure class="hljs highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-comment"># the 4-ed</span><br>cc = g++<br>CFLAGS = -c -Wall <span class="hljs-comment"># -Wall是显示所有的warning</span><br>OFLAGS = -Wall<br><span class="hljs-section">all: func</span><br><span class="hljs-section">func: main.o func1.o func2.o</span><br>      <span class="hljs-variable">$(cc)</span> <span class="hljs-variable">$(OFLAGS)</span> <span class="hljs-variable">$^</span> -o <span class="hljs-variable">$@</span><br><span class="hljs-section">main.o: main.cpp</span><br>      <span class="hljs-variable">$(cc)</span> <span class="hljs-variable">$(CFLAGS)</span> <span class="hljs-variable">$&lt;</span><br><span class="hljs-section">func1.o: func1.cpp</span><br>      <span class="hljs-variable">$(cc)</span> <span class="hljs-variable">$(CFLAGS)</span> <span class="hljs-variable">$&lt;</span><br><span class="hljs-section">func2.o: func2.cpp</span><br>      <span class="hljs-variable">$(cc)</span> <span class="hljs-variable">$(CFLAGS)</span> <span class="hljs-variable">$&lt;</span><br><span class="hljs-section">clean:</span><br>      rm -rf *.o func<br></code></pre></td></tr></table></figure>
-<p>引入\$  ^代表所有的依赖， \$&lt;代表第一个依赖（对于单参数如func1.o的，\$&lt;和\$^都可以）， $@代表target</p>
+<p>引入$ ^代表所有的依赖， $&lt;代表第一个依赖（对于单参数如func1.o的，$&lt;和$^都可以）， $<span class="citation" data-cites="代表target">@代表target</span></p>
 <figure class="hljs highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-comment"># the 5-ed</span><br>cc = g++<br>CFLAGS = -c -Wall<br>OFLAGS = -Wall<br>SOURCE_DIR = .<br>SOURCE_FILE = <span class="hljs-variable">$(<span class="hljs-built_in">wildcard</span> <span class="hljs-variable">$(SOURCE_DIR)</span>/*.cpp)</span> <span class="hljs-comment"># 用于获取路径下指定模式的文件</span><br>OBJS = <span class="hljs-variable">$(<span class="hljs-built_in">patsubst</span> %.cpp, %.o, <span class="hljs-variable">$(SOURCE_FILE)</span>)</span> <span class="hljs-comment"># 用于从一个模式的文件更换为另一个模式文件</span><br><span class="hljs-section">all: func</span><br><span class="hljs-section">func: main.o func1.o func2.o</span><br>      <span class="hljs-variable">$(cc)</span> <span class="hljs-variable">$(OFLAGS)</span> <span class="hljs-variable">$^</span> -o <span class="hljs-variable">$@</span><br><span class="hljs-section">main.o: main.cpp</span><br>      <span class="hljs-variable">$(cc)</span> <span class="hljs-variable">$(CFLAGS)</span> <span class="hljs-variable">$&lt;</span><br><span class="hljs-section">func1.o: func1.cpp</span><br>      <span class="hljs-variable">$(cc)</span> <span class="hljs-variable">$(CFLAGS)</span> <span class="hljs-variable">$&lt;</span><br><span class="hljs-section">func2.o: func2.cpp</span><br>      <span class="hljs-variable">$(cc)</span> <span class="hljs-variable">$(CFLAGS)</span> <span class="hljs-variable">$&lt;</span><br><span class="hljs-section">clean:</span><br>      @rm -rf *.o func <br></code></pre></td></tr></table></figure>
 <p>wildcard 用于获取路径下指定模式的文件</p>
 <p>patsubst (pattern subsitution)用于从一个模式的文件更换为另一个模式文件</p>

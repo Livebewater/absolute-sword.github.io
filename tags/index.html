@@ -82,6 +82,27 @@
     </script>
     
     
+    
+    <script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-MML-AM_CHTML"></script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ["$","$"], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code"]
+      }
+    });
+    </script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += " has-jax";
+      }
+    });
+    </script>
+    
+    
     <script defer type="text/javascript" src="/js/index.js"></script>
     <script type="text/javascript">
     $(document).ready(function () {
@@ -206,7 +227,7 @@
         
       </h2>
       <div class="tags-cloud">
-        <a href="/tags/c-c/" style="font-size: 16px; color: #777">c/c++</a> <a href="/tags/dl/" style="font-size: 16px; color: #777">dl</a> <a href="/tags/ml/" style="font-size: 16px; color: #777">ml</a> <a href="/tags/object-detection/" style="font-size: 16px; color: #777">object-detection</a> <a href="/tags/%EF%BF%BD%EF%BF%BD/" style="font-size: 16px; color: #777">��</a>
+        <a href="/tags/c-c/" style="font-size: 16px; color: #777">c/c++</a> <a href="/tags/dl/" style="font-size: 16px; color: #777">dl</a> <a href="/tags/life/" style="font-size: 16px; color: #777">life</a> <a href="/tags/ml/" style="font-size: 16px; color: #777">ml</a> <a href="/tags/object-detection/" style="font-size: 16px; color: #777">object-detection</a>
       </div>
     </main>
     <footer class="post-footer"></footer>
@@ -263,6 +284,11 @@
 
 
   <div class="sidebar-sticky">
+    
+    
+    
+    
+    
     
     
     <hr>
